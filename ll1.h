@@ -7,6 +7,6 @@ void create_ll_table();
 void predict(int num);
 void priosity(int op);
 int is_terminal(st_LL * word);
-
+int covert_to_type(st_token * st);
 
 #endif // LL1_H

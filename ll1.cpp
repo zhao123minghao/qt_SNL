@@ -1,5 +1,6 @@
 #include "ll1.h"
 #include "tree.h"
+#include "lex_type.h"
 
 int LL_table[96][96];
 
@@ -116,7 +117,7 @@ void create_ll_table()
     LL_table[VarIdMore][COMMA] = 38;
     LL_table[ProcDec][BEGIN] = 39;
     LL_table[ProcDec][PROCEDURE] = 40;
-    LL_table[ProcDecPart][PROCEDURE] = 41;
+    LL_table[ProcDeclaration][PROCEDURE] = 41;
     LL_table[ProcDecMore][BEGIN] = 42;
     LL_table[ProcDecMore][PROCEDURE] = 43;
     LL_table[ProcName][ID] = 44;
@@ -274,4 +275,28 @@ void create_ll_table()
     LL_table[MultOp][MULT] = 103;
     LL_table[MultOp][DIV] = 104;
 
+}
+
+int covert_to_type(st_token * st)
+{
+    char * src = st->sem;
+    int type = st->lex;
+    switch (type) {
+    case RESERVED:
+        break;
+    case DIV_SINGLE:
+        break;
+    case DIV_DOUBLE:
+        break;
+case INID:
+case INTC:
+case NUM:
+case EXP_START:
+case EXP_ENDING:
+case STR_SYMBOL:
+case INRANGE:
+case PROGRAM_END:
+    default:
+        break;
+    }
 }

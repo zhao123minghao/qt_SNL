@@ -103,7 +103,7 @@ typedef stack<st_LL *>  stack_ll;
 #define VarDecMore  42
 #define VarIdList   43
 #define VarIdMore   44
-#define ProcDecpart 45
+#define ProcDeclaration 45
 #define ProcDec     46
 #define ProcDecMore 47
 #define ProcDecName 48

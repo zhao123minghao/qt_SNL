@@ -85,10 +85,30 @@ void process13(stack_ll * stack_sys)
     st_1->ll_type = StructureType;
     stack_sys->push(st_1);
 }
-void process14();
-void process15();
-void process16();
-void process17();
+void process14(stack_ll * stack_sys) //watch out
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    stack_sys->push(st_1);
+}
+void process15(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = INTEGER;
+    stack_sys->push(st_1);
+}
+void process16(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = CHAR;
+    stack_sys->push(st_1);
+}
+void process17(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ArrayType;
+    stack_sys->push(st_1);
+}
 void process18(stack_ll * stack_sys)
 {
     st_LL * st_1 = new st_LL;
@@ -96,7 +116,12 @@ void process18(stack_ll * stack_sys)
     stack_sys->push(st_1);
 }
 void process19();
-void process20();
+void process20(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = INTC;
+    stack_sys->push(st_1);
+}
 
 void process21();
 void process22();
@@ -109,9 +134,29 @@ void process26(stack_ll * stack_sys)
     st_1->ll_type = FieldDecList;
     stack_sys->push(st_1);
 }
-void process27();
-void process28();
-void process29();
+void process27(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = IdMore;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
+void process28(stack_ll * stack_sys)
+{
+    return;
+}
+
+void process29(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = COMMA;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = IdList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process30(stack_ll * stack_sys)
 {
     return;
@@ -126,34 +171,138 @@ void process31(stack_ll * stack_sys)
 void process32();
 void process33();
 void process34();
-void process35();
+void process35(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = VarDecList;
+    stack_sys->push(st_1);
+}
 void process36();
-void process37();
-void process38();
-void process39();
-void process40();
+void process37(stack_ll * stack_sys)
+{
+    return;
+}
+void process38(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = COMMA;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = VarIdList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
+void process39(stack_ll * stack_sys)
+{
+    return;
+}
+
+void process40(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ProcDeclaration;
+    stack_sys->push(st_1);
+}
 
 void process41();
-void process42();
-void process43();
-void process44();
+void process42(stack_ll * stack_sys)
+{
+    return;
+}
+void process43(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ProcDeclaration;
+    stack_sys->push(st_1);
+}
+void process44(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    stack_sys->push(st_1);
+}
 void process45();
-void process46();
-void process47();
+void process46(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ProcDeclaration;
+    stack_sys->push(st_1);
+}
+void process47(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Param;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = ParamMore;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process48();
-void process49();
+void process49(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = SEMIC;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = ParamDecList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process50();
 
 void process51();
-void process52();
-void process53();
-void process54();
-void process55();
-void process56();
+void process52(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = FidMore;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
+void process53(stack_ll * stack_sys)
+{
+    return;
+}
+void process54(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = COMMA;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = FormList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
+void process55(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = DeclarePart;
+    stack_sys->push(st_1);
+}
+void process56(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ProgramBody;
+    stack_sys->push(st_1);
+}
 void process57();
-void process58();
+void process58(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Stm;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = StmList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process59();
-void process60();
+void process60(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = SEMIC;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = StmList;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 
 void process61();
 void process62();
@@ -167,14 +316,44 @@ void process69();
 void process70();
 
 void process71();
-void process72();
-void process73();
+void process72(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = READ;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = LBRACKET;
+    st_LL * st_3 = new st_LL;
+    st_3->ll_type = InVar;
+    st_LL * st_4 = new st_LL;
+    st_4->ll_type = RBRACKET;
+    stack_sys->push(st_4);
+    stack_sys->push(st_3);
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
+void process73(stack_ll * stack_sys) //w
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = SEMIC;
+    stack_sys->push(st_1);
+}
+
 void process74();
-void process75();
+void process75(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = RETURN;
+    stack_sys->push(st_1);
+}
+
 void process76();
 void process77();
 void process78();
-void process79();
+void process79(stack_ll * stack_sys)
+{
+    return;
+}
+
 void process80();
 
 void process81();
@@ -183,12 +362,22 @@ void process83();
 void process84();
 void process85();
 void process86();
-void process87();
+void process87(stack_ll * stack_sys)
+{
+    return;
+}
+
 void process88();
 void process89();
 void process90();
 
-void process91();
+void process91(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Variable;
+    stack_sys->push(st_1);
+}
+
 void process92();
 void process93();
 void process94();
@@ -196,10 +385,41 @@ void process95();
 void process96();
 void process97();
 void process98();
-void process99();
-void process100();
+void process99(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = LT;
+    stack_sys->push(st_1);
+}
 
-void process101();
-void process102();
-void process103();
-void process104();
+void process100(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = EQ;
+    stack_sys->push(st_1);
+}
+
+void process101(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = PLUS;
+    stack_sys->push(st_1);
+}
+void process102(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = SUB;
+    stack_sys->push(st_1);
+}
+void process103(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = MULT;
+    stack_sys->push(st_1);
+}
+void process104(stack_ll * stack_sys)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = DIV;
+    stack_sys->push(st_1);
+}
