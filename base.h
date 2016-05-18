@@ -62,7 +62,7 @@ const char SNL_RESERVED[64][10] = {
 #define TypeId      27
 #define TypeDef     28
 #define BaseType    29
-#define Structure   30
+#define StructureType   30
 #define ArrayType   31
 #define Low         32
 #define Top         33
@@ -71,7 +71,7 @@ const char SNL_RESERVED[64][10] = {
 #define FieldDecMore    36
 #define IdList      37
 #define IdMore      38
-#define VarDecpart  39
+#define VarDeclaration  39
 #define VarDec      40
 #define VarDecList  41
 #define VarDecMore  42
@@ -81,9 +81,11 @@ const char SNL_RESERVED[64][10] = {
 #define ProcDec     46
 #define ProcDecMore 47
 #define ProcDecName 48
+#define ProcName    89
 #define ParamList   49
 #define ParamDecList  50
 #define ParamMore   51
+#define Param       90
 #define FormList    52
 #define FidMore     53
 #define ProcDecPart 54
@@ -97,7 +99,7 @@ const char SNL_RESERVED[64][10] = {
 #define ConditionalStm  62
 #define LoopStm     63
 #define InputStm    64
-#define Invar       65
+#define InVar       65
 #define OutputStm   66
 #define ReturnStm   67
 #define CallStmRest 68
@@ -115,9 +117,27 @@ const char SNL_RESERVED[64][10] = {
 #define FieldVar    80
 #define FieldVarMore    81
 #define CmpOp       82
-#define AddOP       83
+#define AddOp       83
 #define MultOp      84
 
-#define Empty       90
-#define ID          91
+#define Empty       22
+#define ID          23
+#define INTC        24
+#define NUM         24
+#define SEMIC       25
+#define COMMA       26
+#define LBRACKET    27
+#define RBRACKET    28
+#define ASSIGN      29
+#define LSBRACKET   30
+#define RSBRACKET   31
+#define DOT         32
+#define LT          33
+#define GT          34
+#define EQ          35
+#define PLUS        36
+#define SUB         37
+#define MULT        38
+#define DIV         39
+
 #endif // BASE_H_INCLUDED
