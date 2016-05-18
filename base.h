@@ -1,6 +1,8 @@
 #ifndef BASE_H_INCLUDED
 #define BASE_H_INCLUDED
 #include<list>
+#include<stack>
+#include<string.h>
 typedef int lex_type;
 
 struct st_token
@@ -25,6 +27,30 @@ const char SNL_RESERVED[64][10] = {
     "endwh","BEGIN1","end","read","write",
     "array","of","record","return","integer","char"
 };
+
+struct LL_tree_node
+{
+    int ll_tree_type;
+    char ll_str[256];
+    int line_num;
+    LL_tree_node * child = NULL;
+    LL_tree_node * brother = NULL;
+};
+
+typedef stack<LL_tree_node *>  stack_tree;
+
+struct st_LL
+{
+    int ll_type;
+    char str[256];
+    st_LL()
+    {
+        ll_type = 0;
+        str[0] = 0;
+    }
+};
+
+typedef stack<st_LL *>  stack_ll;
 
 #define SNL_RESERVED_NUM 38
 

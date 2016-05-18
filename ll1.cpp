@@ -1,20 +1,23 @@
 #include "ll1.h"
-#include <stack>
+#include "tree.h"
 
 int LL_table[96][96];
 
-LL_tree * LL_main(token_list tokens)
+LL_tree_node * LL_main(token_list tokens)
 {
-    LL_tree * ret;
+    LL_tree_node * ret;
     int line_no;
-    stack<st_token *> sysmbel_stack;
+    stack_ll sysmbel_stack;
+    stack_ll gram_tree_stack;
+    stack_ll operator_stack;
+    stack_ll num_stack;
 
     create_ll_table();
     ret =  create_node();
 
     while(!sysmbel_stack.empty())
     {
-        st_token * sys_pointer = sysmbel_stack.top();
+        st_LL * sys_pointer = sysmbel_stack.top();
         if(is_terminal(sys_pointer))
         {
             if(match())

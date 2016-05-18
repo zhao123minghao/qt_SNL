@@ -6,7 +6,9 @@ CONFIG -= qt
 SOURCES += main.cpp \
     lex.cpp \
     file_operation.cpp \
-    ll1.cpp
+    ll1.cpp \
+    predict.cpp \
+    tree.cpp
 
 HEADERS += \
     base.h \
@@ -14,4 +16,5 @@ HEADERS += \
     lex_type.h \
     file_operation.h \
     ll1.h \
-    predict.h
+    predict.h \
+    tree.h
