@@ -24,7 +24,7 @@ const char SNL_RESERVED[64][10] = {
     "ARRAY","OF","RECORD","RETURN","INTEGER","CHAR",
     "program","procedure","type","var","if",
     "then","else","fi","while","do",
-    "endwh","BEGIN1","end","read","write",
+    "endwh","begin","end","read","write",
     "array","of","record","return","integer","char"
 };
 
@@ -165,5 +165,18 @@ typedef stack<st_LL *>  stack_ll;
 #define SUB         37
 #define MULT        38
 #define DIV         39
+
+#define NONE		0
+#define INID		23
+#define RESERVED    2
+#define DIV_SINGLE  5
+#define DIV_DOUBLE  29
+#define EXP_START   7
+#define EXP_ENDING  8
+#define STR_SYMBOL  9
+#define INRANGE		10
+#define PROGRAM_END 42
+
+#define LEX_ERROR	-1
 
 #endif // BASE_H_INCLUDED

@@ -281,21 +281,153 @@ int covert_to_type(st_token * st)
 {
     char * src = st->sem;
     int type = st->lex;
+    int ret = 0;
     switch (type) {
     case RESERVED:
+        if(strcmp(st->sem,"program"))
+        {
+            ret = PROGRAM;
+        }
+        else if(strcmp(st->sem,"procedure"))
+        {
+            ret = PROCEDURE;
+        }
+        else if(strcmp(st->sem,"type"))
+        {
+            ret = TYPE;
+        }
+        else if(strcmp(st->sem,"var"))
+        {
+            ret = VAR;
+        }
+        else if(strcmp(st->sem,"if"))
+        {
+            ret = IF;
+        }
+        else if(strcmp(st->sem,"then"))
+        {
+            ret = THEN;
+        }
+        else if(strcmp(st->sem,"else"))
+        {
+            ret = ELSE;
+        }
+        else if(strcmp(st->sem,"fi"))
+        {
+            ret = FI;
+        }
+        else if(strcmp(st->sem,"while"))
+        {
+            ret = WHILE;
+        }
+        else if(strcmp(st->sem,"do"))
+        {
+            ret = DO;
+        }
+        else if(strcmp(st->sem,"endwh"))
+        {
+            ret = ENDWH;
+        }
+        else if(strcmp(st->sem,"begin"))
+        {
+            ret = BEGIN;
+        }
+        else if(strcmp(st->sem,"end"))
+        {
+            ret = END;
+        }
+        else if(strcmp(st->sem,"read"))
+        {
+            ret = READ;
+        }
+        else if(strcmp(st->sem,"write"))
+        {
+            ret = WRITE;
+        }
+        else if(strcmp(st->sem,"array"))
+        {
+            ret = ARRAY;
+        }
+        else if(strcmp(st->sem,"of"))
+        {
+            ret = OF;
+        }
+        else if(strcmp(st->sem,"record"))
+        {
+            ret = RECORD;
+        }
+        else if(strcmp(st->sem,"return"))
+        {
+            ret = RETURN;
+        }
+        else if(strcmp(st->sem,"integer"))
+        {
+            ret = INTEGER;
+        }
+        else if(strcmp(st->sem,"char"))
+        {
+            ret = CHAR;
+        }
+        else {
+            ret = 0;
+        }
         break;
     case DIV_SINGLE:
+        char t = st->sem[0];
+        switch(t)
+        {
+            case '(':
+                ret = LBRACKET;
+            break;
+            case ')':
+                ret = RBRACKET;
+            break;
+            case '+':
+                ret = PLUS;
+            break;
+            case '-':
+                ret = SUB;
+            break;
+            case '*':
+                ret = MULT;
+            break;
+            case '/':
+                ret = DIV;
+            break;
+            case '<':
+                ret = LT;
+            break;
+            case '=':
+                ret = EQ;
+            break;
+            case '[':
+                ret = LSBRACKET;
+            break;
+            case ']':
+                ret = RSBRACKET;
+            break;
+            case '.':
+                ret = COMMA;
+            break;
+            case ';':
+                ret = SEMIC;
+            break;
+            default:
+                ret = 0;
+        }
+
         break;
     case DIV_DOUBLE:
+        ret = ASSIGN;
         break;
-case INID:
-case INTC:
-case NUM:
-case EXP_START:
-case EXP_ENDING:
-case STR_SYMBOL:
-case INRANGE:
-case PROGRAM_END:
+    case INID:
+    case INTC:
+    case NUM:
+    case EXP_START:
+    case EXP_ENDING:
+    case STR_SYMBOL:
+    case INRANGE:
+    case PROGRAM_END:
     default:
         break;
     }
