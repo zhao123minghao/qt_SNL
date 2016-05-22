@@ -162,8 +162,6 @@ void process17(stack_ll * stack_sys)
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ArrayType;
     stack_sys->push(st_1);
-    LL_tree_node * node = stack_prg->top();
-    node->ll_tree_type = ArrayK;
 }
 void process18(stack_ll * stack_sys)
 {
@@ -171,7 +169,7 @@ void process18(stack_ll * stack_sys)
     st_1->ll_type = RecType;
     stack_sys->push(st_1);
 }
-void process19(stack_ll * stack_sys)//w
+void process19(stack_ll * stack_sys,stack_tree * stack_prg)//w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ARRAY;
@@ -180,7 +178,7 @@ void process19(stack_ll * stack_sys)//w
     st_LL * st_3 = new st_LL;
     st_3->ll_type = Low;
     st_LL * st_4 = new st_LL;
-    st_4->ll_type = ;
+    st_4->ll_type = INRANGE;
     st_LL * st_5 = new st_LL;
     st_5->ll_type = Top;
     st_LL * st_6 = new st_LL;
@@ -197,19 +195,26 @@ void process19(stack_ll * stack_sys)//w
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
+
+    LL_tree_node * node = stack_prg->top();
+    node->ll_tree_type = ArrayK;
 }
-void process20(stack_ll * stack_sys) //w
+void process20(stack_ll * stack_sys,stack_tree * stack_prg,int value) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = INTC;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    node->value = value;
 }
 
-void process21(stack_ll * stack_sys) //w
+void process21(stack_ll * stack_sys,stack_tree * stack_prg,int value) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = INTC;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    node->value = value;
 }
 
 void process22(stack_ll * stack_sys,stack_tree * stack_prg,LL_tree_node ** save_pointer)//unf
@@ -223,12 +228,32 @@ void process22(stack_ll * stack_sys,stack_tree * stack_prg,LL_tree_node ** save_
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
-    LL_tree_node * node = stack_prg->top();
-    LL_tree_node * bro_node = create_node();
-    node->brother = bro_node;
-    stack_prg->push(bro_node);
+    LL_tree_node * node = create_node();
+    node->ll_tree_type = RecordK;
+    *save_pointer = node;
+    LL_tree_node * child_node = create_node();
+    node->child = child_node;
+    stack_prg->push(child_node);
 }
-void process23();
+void process23(stack_ll * stack_sys,stack_tree * stack_prg)//unf
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = BaseType;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = IdList;
+    st_LL * st_3 = new st_LL;
+    st_3->ll_type = SEMIC;
+    st_LL * st_4 = new st_LL;
+    st_4->ll_type = FieldDecMore;
+    stack_sys->push(st_4);
+    stack_sys->push(st_3);
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    LL_tree_node * brother_node = create_node();
+    node->brother = brother_node;
+    stack_prg->push(brother_node);
+}
 void process24(stack_ll * stack_sys,stack_tree * stack_prg)//w2
 {
     st_LL * st_1 = new st_LL;
@@ -250,8 +275,8 @@ void process24(stack_ll * stack_sys,stack_tree * stack_prg)//w2
 }
 void process25(stack_ll * stack_sys,stack_tree * stack_prg,LL_tree_node ** save_pointer)//unf
 {
-    LL_tree_node * node = stack_prg->top();
-    *save_pointer = node;
+    stack_prg->pop();
+    LL_tree_node *node  = *save_pointer;
 }
 void process26(stack_ll * stack_sys)
 {
@@ -259,7 +284,7 @@ void process26(stack_ll * stack_sys)
     st_1->ll_type = FieldDecList;
     stack_sys->push(st_1);
 }
-void process27(stack_ll * stack_sys) //w
+void process27(stack_ll * stack_sys,stack_tree * stack_prg,char * str) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ID;
@@ -267,13 +292,15 @@ void process27(stack_ll * stack_sys) //w
     st_2->ll_type = IdMore;
     stack_sys->push(st_2);
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    strcpy(node->ll_str,str);
 }
 void process28(stack_ll * stack_sys)
 {
     return;
 }
 
-void process29(stack_ll * stack_sys) //w
+void process29(stack_ll * stack_sys)
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = COMMA;
@@ -338,7 +365,7 @@ void process35(stack_ll * stack_sys)
     st_1->ll_type = VarDecList;
     stack_sys->push(st_1);
 }
-void process36(stack_ll * stack_sys,stack_tree * stack_prg)//w
+void process36(stack_ll * stack_sys,stack_tree * stack_prg,char * str)//w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = VAR;
@@ -347,12 +374,13 @@ void process36(stack_ll * stack_sys,stack_tree * stack_prg)//w
     stack_sys->push(st_2);
     stack_sys->push(st_1);
     LL_tree_node * node = stack_prg->top();
+    strcpy(node->ll_str,str);
 }
 void process37(stack_ll * stack_sys)
 {
     return;
 }
-void process38(stack_ll * stack_sys) //w
+void process38(stack_ll * stack_sys)
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = COMMA;
@@ -423,11 +451,13 @@ void process43(stack_ll * stack_sys)
     st_1->ll_type = ProcDeclaration;
     stack_sys->push(st_1);
 }
-void process44(stack_ll * stack_sys)
+void process44(stack_ll * stack_sys,stack_tree * stack_prg,char * str)
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ID;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    strcpy(node->ll_str,str);
 }
 void process45(stack_ll * stack_sys,stack_tree * stack_prg)//w
 {
@@ -495,7 +525,7 @@ void process51(stack_ll * stack_sys,stack_tree * stack_prg) //w
     node->brother = bro_node;
     stack_prg->push(bro_node);
 }
-void process52(stack_ll * stack_sys) //w
+void process52(stack_ll * stack_sys,stack_tree * stack_prg,char * str) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ID;
@@ -503,6 +533,8 @@ void process52(stack_ll * stack_sys) //w
     st_2->ll_type = FidMore;
     stack_sys->push(st_2);
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    strcpy(node->ll_str,str);
 }
 void process53(stack_ll * stack_sys)
 {
@@ -575,6 +607,7 @@ void process61(stack_ll * stack_sys,stack_tree * stack_prg) //w
     st_1->ll_type = ConditionalStm;
     stack_sys->push(st_1);
     LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = IfK;
     stack_prg->pop();
     LL_tree_node* bro_node = create_node();
     node->brother = bro_node;
@@ -586,6 +619,7 @@ void process62(stack_ll * stack_sys,stack_tree * stack_prg) //w
     st_1->ll_type = LoopStm;
     stack_sys->push(st_1);
     LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = WhileK;
     stack_prg->pop();
     LL_tree_node* bro_node = create_node();
     node->brother = bro_node;
@@ -595,10 +629,15 @@ void process63(stack_ll * stack_sys,stack_tree * stack_prg) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = InputStm;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = InputStm;
+    st_LL * st_3 = new st_LL;
+    st_3->ll_type = InputStm;
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
     LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = ReadK;
     stack_prg->pop();
     LL_tree_node* bro_node = create_node();
     node->brother = bro_node;
@@ -608,9 +647,12 @@ void process64(stack_ll * stack_sys,stack_tree * stack_prg) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = OutputStm;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = InputStm;
     stack_sys->push(st_2);
     stack_sys->push(st_1);
     LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = WriteK;
     stack_prg->pop();
     LL_tree_node* bro_node = create_node();
     node->brother = bro_node;
@@ -622,6 +664,7 @@ void process65(stack_ll * stack_sys,stack_tree * stack_prg) //w
     st_1->ll_type = ReturnStm;
     stack_sys->push(st_1);
     LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = ReturnK;
     stack_prg->pop();
     LL_tree_node* bro_node = create_node();
     node->brother = bro_node;
@@ -642,17 +685,21 @@ void process66(stack_ll * stack_sys,stack_tree * stack_prg) //u
     node->brother = bro_node;
     stack_prg->push(bro_node);
 }
-void process67(stack_ll * stack_sys) //w
+void process67(stack_ll * stack_sys,stack_tree * stack_prg) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = AssignmentRest;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    node->ll_tree_type = AssignK;
 }
-void process68(stack_ll * stack_sys) //w
+void process68(stack_ll * stack_sys,stack_tree * stack_prg) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = CallStmRest;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    node->ll_tree_type = CallK;
 }
 void process69(stack_ll * stack_sys,stack_tree * stack_prg)//unf
 {
@@ -665,6 +712,8 @@ void process69(stack_ll * stack_sys,stack_tree * stack_prg)//unf
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
+    LL_tree_node * node = create_node();
+    stack_prg->push(node);
 }
 
 void process70(stack_ll * stack_sys,stack_tree * stack_prg)//w2
@@ -751,14 +800,17 @@ void process72(stack_ll * stack_sys)
     stack_sys->push(st_2);
     stack_sys->push(st_1);
 }
-void process73(stack_ll * stack_sys) //w
+void process73(stack_ll * stack_sys,stack_tree * stack_prg,char * str) //w
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = SEMIC;
     stack_sys->push(st_1);
+    LL_tree_node * node = stack_prg->top();
+    strcpy(node->ll_str,str);
 }
 
-void process74(stack_ll * stack_sys,stack_tree * stack_prg)//u
+void process74(stack_ll * stack_sys,stack_tree * stack_prg,
+               stack_ll * op,LL_tree_node * current)//u
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = WRITE;
@@ -772,16 +824,12 @@ void process74(stack_ll * stack_sys,stack_tree * stack_prg)//u
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
-    LL_tree_node * node = stack_prg->top();
     LL_tree_node * child_node = create_node();
-    LL_tree_node * bro1_node = create_node();
-    LL_tree_node * bro2_node = create_node();
-    node->child = child_node;
-    child_node->brother = bro1_node;
-    bro1_node->brother = bro2_node;
-    stack_prg->push(bro2_node);
-    stack_prg->push(bro1_node);
+    st_LL* end_node = new st_LL;
+    end_node->ll_type = END;
+    current->child = child_node;
     stack_prg->push(child_node);
+    op->push(end_node);
 }
 void process75(stack_ll * stack_sys)
 {
@@ -790,7 +838,7 @@ void process75(stack_ll * stack_sys)
     stack_sys->push(st_1);
 }
 
-void process76(stack_ll * stack_sys,stack_tree * stack_prg)//u
+void process76(stack_ll * stack_sys,stack_tree * stack_prg,LL_tree_node * current)//u
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = LBRACKET;
@@ -801,9 +849,16 @@ void process76(stack_ll * stack_sys,stack_tree * stack_prg)//u
     stack_sys->push(st_3);
     stack_sys->push(st_2);
     stack_sys->push(st_1);
+    LL_tree_node * node = create_node();
+    current->child = node;
+    stack_prg->push(node);
 }
-void process77();
-void process78(stack_ll * stack_sys,stack_tree * stack_prg)//u
+void process77(stack_ll * stack_sys,stack_tree * stack_prg)
+{
+    stack_prg->pop();
+}
+
+void process78(stack_ll * stack_sys,stack_tree * stack_prg,stack_ll * op)//u
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = Exp;
@@ -811,15 +866,16 @@ void process78(stack_ll * stack_sys,stack_tree * stack_prg)//u
     st_2->ll_type = ActParamMore;
     stack_sys->push(st_2);
     stack_sys->push(st_1);
-    LL_tree_node * node = create_node();
-    stack_prg->push(node);
+    st_LL* end_node = new st_LL;
+    end_node->ll_type = END;
+    op->push(end_node);
 }
 void process79(stack_ll * stack_sys)
 {
     return;
 }
 
-void process80(stack_ll * stack_sys,stack_tree * stack_prg)//u
+void process80(stack_ll * stack_sys,stack_tree * stack_prg,LL_tree_node * current)//u
 {
     st_LL * st_1 = new st_LL;
     st_1->ll_type = ASSIGN;
@@ -828,15 +884,71 @@ void process80(stack_ll * stack_sys,stack_tree * stack_prg)//u
     stack_sys->push(st_2);
     stack_sys->push(st_1);
     LL_tree_node * node = create_node();
+    current->brother = node;
     stack_prg->push(node);
 }
 
-void process81();
-void process82();
-void process83();
+void process81(stack_ll * stack_sys,stack_tree * stack_prg,
+               stack_ll* op,int * ExpResult)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Exp;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = OtherRelE;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+    st_LL* end_node = new st_LL;
+    end_node->ll_type = END;
+    op->push(end_node);
+    *ExpResult = 0;
+}
+
+void process82(stack_ll * stack_sys,stack_tree * stack_prg,
+               stack_ll* op,stack_ll*num,int p,int * ExpResult)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = CmpOp;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = Exp;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+
+    while(priosity(op->top()->ll_type,p))
+    {
+        st_LL * op_top = op->top();
+        op->pop();
+        st_LL * Rnum = num->top();
+        num->pop();
+        st_LL * Lnum = num->top();
+        num->pop();
+        op_top->child = Lnum;
+        Lnum->brother = Rnum;
+        num->push(op_top);
+    }
+    st_LL * node = new st_LL;
+    node->ll_type = p;
+    *ExpResult = 1;
+}
+void process83(stack_ll * stack_sys)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Term;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = OtherTerm;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process84();
 void process85();
-void process86();
+void process86(stack_ll * stack_sys)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = Factor;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = OtherFactor;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+}
 void process87(stack_ll * stack_sys)
 {
     return;
@@ -844,7 +956,15 @@ void process87(stack_ll * stack_sys)
 
 void process88();
 void process89();
-void process90();
+void process90(stack_ll * stack_sys,stack_ll*num,int p)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = INTC;
+    stack_sys->push(st_1);
+    st_LL * sl = new st_LL;
+    sl->ll_type = p;
+    num->push(sl);
+}
 
 void process91(stack_ll * stack_sys)
 {
@@ -853,12 +973,65 @@ void process91(stack_ll * stack_sys)
     stack_sys->push(st_1);
 }
 
-void process92();
-void process93();
-void process94();
-void process95();
-void process96();
-void process97();
+void process92(stack_ll * stack_sys,stack_ll*num,char * src)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = VarIdMore;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+    st_LL * sl = new st_LL;
+    strcpy(sl->str,src);
+    num->push(sl);
+}
+void process93(stack_ll * stack_sys,stack_ll*num)
+{
+    st_LL * node = num->top();
+    node->ll_type = 1;
+}
+
+void process94(stack_ll * stack_sys,stack_tree * stack_prg,
+               stack_ll* op,stack_ll*num,int p,int * ExpResult)//u
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = LSBRACKET;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = Exp;
+    st_LL * st_3 = new st_LL;
+    st_3->ll_type = RSBRACKET;
+    stack_sys->push(st_3);
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+
+    st_LL * node = new st_LL;
+    node->ll_type = p;
+    *ExpResult = 1;
+}
+void process95(stack_ll * stack_sys,stack_tree *stack_prg)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = FieldVar;
+    stack_sys->push(st_1);
+    LL_tree_node* node = create_node();
+    stack_prg->push(node);
+}
+void process96(stack_ll * stack_sys,stack_tree *stack_prg,char * str)
+{
+    st_LL * st_1 = new st_LL;
+    st_1->ll_type = ID;
+    st_LL * st_2 = new st_LL;
+    st_2->ll_type = FieldVarMore;
+    stack_sys->push(st_2);
+    stack_sys->push(st_1);
+    LL_tree_node* node = stack_prg->top();
+    strcpy(node->ll_str,str);
+}
+void process97(stack_ll * stack_sys,stack_tree *stack_prg) // warn
+{
+    LL_tree_node* node = stack_prg->top();
+    node->ll_tree_type = 1;
+}
 void process98();
 void process99(stack_ll * stack_sys)
 {

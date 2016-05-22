@@ -117,4 +117,6 @@ void process102(stack_ll * stack_sys);
 void process103(stack_ll * stack_sys);
 void process104(stack_ll * stack_sys);
 
+int priosity(int op_1,int op_2);
+
 #endif // PREDICT_H

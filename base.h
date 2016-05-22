@@ -33,6 +33,7 @@ struct LL_tree_node
     int ll_tree_type;
     char ll_str[256];
     int line_num;
+    int value = 0;
     LL_tree_node * child = NULL;
     LL_tree_node * brother = NULL;
 };
@@ -43,10 +44,14 @@ struct st_LL
 {
     int ll_type;
     char str[256];
+    st_LL *child;
+    st_LL *brother;
     st_LL()
     {
         ll_type = 0;
         str[0] = 0;
+        child = NULL;
+        brother = NULL;
     }
 };
 
